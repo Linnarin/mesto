@@ -1,0 +1,10 @@
+.attractions {
+  max-width: 880px;
+  margin: 47px auto 67px;
+}
+  
+@media (max-width: 694px) {
+  .attractions {
+    margin: 36px auto 48px;
+  }
+}

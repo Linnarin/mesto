@@ -1,0 +1,12 @@
+.header {
+  max-width: 880px;
+  margin: 45px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 694px) {
+  .header {
+    margin: 28px auto 38px;
+  }
+}

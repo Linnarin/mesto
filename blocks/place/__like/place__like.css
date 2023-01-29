@@ -1,0 +1,16 @@
+.place__like {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/heart.svg);
+  border-style: none;
+  cursor: pointer;
+}
+  
+.place__like:hover {
+  opacity: 50%;
+}
+  
+.place__like:active {
+  background-image: url(../../../images/blackheart.svg);
+  opacity: 100%;
+}

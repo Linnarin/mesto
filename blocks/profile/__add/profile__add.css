@@ -1,0 +1,23 @@
+.profile__add {
+  width: 150px;
+  height: 50px;
+  background-color: #000;
+  border: 1px solid #FFF;
+  position: absolute;
+  right: 0;
+  top: 35px;
+  margin: auto 0;
+  cursor: pointer;
+}
+  
+@media (max-width: 694px) {
+  .profile__add {
+    position: static;
+    width: 100%;
+    max-width: 282px;
+  }
+}
+  
+.profile__add:hover {
+  opacity: 0.6;
+}
