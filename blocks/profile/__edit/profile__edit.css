@@ -6,10 +6,8 @@
   border: 1px solid #FFF;
   padding: 0;
   background-size: contain;
-  position: absolute;
-  top: 15px;
-  right: 0;
   cursor: pointer;
+  margin: 37px 0 0;
 }
   
 @media (max-width: 694px) {

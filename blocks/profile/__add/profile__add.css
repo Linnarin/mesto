@@ -3,9 +3,7 @@
   height: 50px;
   background-color: #000;
   border: 1px solid #FFF;
-  position: absolute;
-  right: 0;
-  top: 35px;
+  align-self: flex-end;
   margin: auto 0;
   cursor: pointer;
 }

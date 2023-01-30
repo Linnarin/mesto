@@ -38,9 +38,9 @@ function addInfo() {
     let profileprofession = document.querySelector('.profile__profession');
     profilename.textContent = name.value;
     profileprofession.textContent = profession.value;
-    
     name.value = '';
     profession.value = '';
+    popup.classList.remove('popup_opened');
 }
   
   savebutton.addEventListener('click', addInfo);
