@@ -1,24 +1,24 @@
 .profile__edit {
   width: 24px;
   height: 24px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   border: 1px solid #FFF;
   padding: 0;
   background-size: contain;
   cursor: pointer;
-  margin: 37px 0 0;
+  margin: 37px 5px 0 18px;
 }
   
 @media (max-width: 694px) {
   .profile__edit {
     width: 18px;
     height: 18px;
-    top: 8px;
-    right: 19px;
+    align-self: flex-end;
+    margin: -90px 10px 64px 0;
   }
 }
   
 .profile__edit:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }

@@ -9,70 +9,67 @@
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg">  
-      <div class="header__line"></div>                  
+      <img class="header__logo" src="./images/logo.svg" alt="надпись Место">                
     </header>    
     <main>
       <section class="profile">
         <div class="profile__data">
-          <img class="profile__avatar" src="./images/Kusto.jpg" alt="Фото Жак-Ива Кусто">
-          <div class="profile__info">   
+          <img class="profile__avatar" src="./images/Kusto.jpg" alt="Фото анкеты">
+          <div class="profile__info">  
             <h1 class="profile__name">Жак-Ив-Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="profile__edit">
-            <img src="./images/Profileedit.svg" class="profile__edit-img">
+          <button class="profile__edit" type="button">
+            <img src="./images/Profileedit.svg" class="profile__edit-img" alt="картинка карандаша">
           </button>
         </div>
-        <button class="profile__add">
-          <img class="profile__add-img" src="./images/addbutton.svg">  
+        <button class="profile__add" type="button">
+          <img class="profile__add-img" src="./images/addbutton.svg" alt="плюс">  
         </button>
       </section>
       <section class="attractions">
-        <div class="places">
           <div class="place">
             <img class="place__img" src="./images/karachayevsk.jpg" alt="Фото храма">
             <div class="place__caption">
-              <p class="place__title">Карачаевск</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Карачаевск</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>
           <div class="place">
             <img class="place__img" src="./images/Elbrus.jpg" alt="Фото горы Эльбрус">
             <div class="place__caption">
-              <p class="place__title">Гора Эльбрус</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Гора Эльбрус</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>
           <div class="place">
             <img class="place__img" src="./images/Dombay.jpg" alt="Фото гор на Домбае">
             <div class="place__caption">
-              <p class="place__title">Домбай</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Домбай</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>
           <div class="place">
             <img class="place__img" src="./images/Elbrus.jpg" alt="Фото горы Эльбрус">
             <div class="place__caption">
-              <p class="place__title">Гора Эльбрус</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Гора Эльбрус</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>
           <div class="place">
             <img class="place__img" src="./images/Dombay.jpg" alt="Фото гор на Домбае">
             <div class="place__caption">
-              <p class="place__title">Домбай</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Домбай</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>
           <div class="place">
             <img class="place__img" src="./images/karachayevsk.jpg" alt="Фото храма">
             <div class="place__caption">
-              <p class="place__title">Карачаевск</p>
-              <button class="place__like"></button>
+              <h2 class="place__title">Карачаевск</h2>
+              <button class="place__like" type="button"></button>
             </div>  
           </div>     
-        </div>
       </section> 
     </main>
     <footer class="footer">
@@ -81,14 +78,14 @@
     <section class="popup">
         <div class="popup__container">
           <button class="popup__close">
-            <img src="./images/CloseIcon.svg">
+            <img class="popup__close-img" src="./images/CloseIcon.svg">
           </button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <div class="popup__input">
-            <input type="text" class="popup__input-text popup__input-text_type_name">
-            <input type="text" class="popup__input-text popup__input-text_type_profession">
-            <button class="popup__save-btn">Сохранить</button>
-          </div>
+          <form class="popup__input" name="popupform">
+            <input type="text" name="nameform" class="popup__input-text popup__input-text_type_name">
+            <input type="text" name="professionform" class="popup__input-text popup__input-text_type_profession">
+            <button class="popup__save-btn" type="submit">Сохранить</button>
+          </form>
         </div>
       </section> 
       <script src="./scripts/index.js"></script>

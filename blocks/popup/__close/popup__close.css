@@ -2,7 +2,7 @@
   width: 32px;
   height: 32px;
   border: none;
-  background:transparent;
+  background: transparent;
   cursor: pointer;
   position: absolute;
   top: -42px;
@@ -11,8 +11,8 @@
   
 @media (max-width: 694px) {
   .popup__close {
-    top: -50px;
-    right: 10px;
+    top: -40px;
+    right: -5px;
   }
 }
   

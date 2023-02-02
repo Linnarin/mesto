@@ -7,4 +7,12 @@
   font-weight: normal;
   line-height: 1.21;
   cursor: pointer;
+  margin: 18px 0 0;
+  border: none;
+}
+
+@media (max-width: 694px) {
+  .popup__save-btn {
+    font-size: 14px;
+  }
 }
