@@ -4,13 +4,14 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  width: 302px;
 }
   
 @media (max-width: 694px) {
   .profile__info {
-    margin: 22px auto 36px;
+    margin: 27px auto 28px;
     align-items: center;
-    width: 282px;
+    width: 200px;
   }
 }
   

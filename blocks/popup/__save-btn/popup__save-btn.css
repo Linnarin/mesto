@@ -14,5 +14,7 @@
 @media (max-width: 694px) {
   .popup__save-btn {
     font-size: 14px;
+    margin: 15px 0 0;
+    height: 46px;
   }
 }

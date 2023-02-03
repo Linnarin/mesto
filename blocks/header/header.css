@@ -3,11 +3,11 @@
   margin: 45px auto;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media (max-width: 694px) {
   .header {
-    margin: 28px auto 38px;
+    margin: 28px 0 38px;
   }
 }
