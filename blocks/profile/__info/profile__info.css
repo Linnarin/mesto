@@ -11,7 +11,7 @@
   .profile__info {
     margin: 27px auto 28px;
     align-items: center;
-    width: 200px;
+    max-width: 194px;
   }
 }
   
