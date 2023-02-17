@@ -85,39 +85,56 @@ const handleDelete = (evt) => {
   evt.target.closest('.place').remove();
 }
 
+let popupFormPlace = document.forms.popupformplace
+
+
 const getItemElement = (link, name) => {
   const newItemElement = templatePlace.content.cloneNode(true);
   const newItemTitle = newItemElement.querySelector('.place__title').textContent = `${name}`;
-  const newItemImg = newItemElement.querySelector('.place__img').src = `${link}`;
-  const likeActive = newItemElement.querySelector('.place__like');
+  const newItemImg = newItemElement.querySelector('.place__img')
+  newItemImg.src = `${link}`;
+  const likeActive = newItemElement.querySelector('.place__like').addEventListener('click', function (event) {
+    event.target.classList.toggle('.place__like_active');
+  });
   const deleteButton = newItemElement.querySelector('.place__delete');
   deleteButton.addEventListener('click', handleDelete);
+
   return newItemElement
 }
 
 const renderItem = (link, name) => {
   attractions.prepend(getItemElement(link, name))
-  
 }
 
 initialCards.forEach((item) => {
   renderItem(item.link, item.name)
 })
 
-buttonCreate.addEventListener('submit', (evt) => {
+popupFormPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
   renderItem(urlForm.value, titleForm.value)
+  popupFormPlace.reset();
 })
 
-const placeOpen = document.querySelector(".popup-img");
-const placePhoto = document.querySelector(".popup-img__photo");
-const placeTitle = document.querySelector(".popup-img__title");
-const placeImg = document.querySelector(".place__img");
+buttonCreate.addEventListener('click', toggleOpenAddPopup)
 
-function imgOpen () {
-  placeOpen.classList.add("popup_opened");
-  placePhoto.value = newItemImg.src;
-  placeTitle.value = placeTitle.textContent;
+const toggleOpenImgPopup = (evt) => {
+  evt.target.classList.toggle('popup_opened')
 }
 
-placeImg.addEventListener('click', handleDelete);
+const templatePlaceImg = document.querySelector("#popupImg");
+
+
+const getPopupImg = (link, name) => {
+  const newPopupImg = templatePlaceImg.content.cloneNode(true);
+  const newPopupImgTitle = newPopupImg.querySelector(".popup__title-photo").textContent = `${name}`;
+  const newPopupImgPhoto = newPopupImg.querySelector('.popup__photo')
+  newPopupImgPhoto.src = `${link}`;
+  const closePopupImgButton = newPopupImg.querySelector('.popup__close')
+  closePopupImgButton.addEventListener('click', toggleOpenImgPopup)
+  return newPopupImg
+}
+
+newItemImg.addEventListener('click', toggleOpenImgPopup)
+
+

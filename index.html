@@ -83,7 +83,7 @@
           <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__input" name="popupform">
+        <form class="popup__input" name="popupform" type="submit">
           <input type="text" name="nameform" class="popup__input-text popup__input-text_type_name">
           <input type="text" name="professionform" class="popup__input-text popup__input-text_type_profession">
           <button class="popup__btn popup__btn_type_save" type="submit">Сохранить</button>
@@ -96,7 +96,7 @@
           <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
         </button>
         <h2 class="popup__title popup__title_type_attraction">Новое место</h2>
-        <form class="popup__input popup__input_type_attraction" name="popupform">
+        <form class="popup__input popup__input_type_attraction" name="popupformplace">
           <input type="text" placeholder="Название" name="popuptitle" class="popup__input-text popup__input-text_type_title">
           <input type="url" placeholder="Ссылка на картинку" name="popupurl" class="popup__input-text popup__input-text_type_url">
           <button class="popup__btn popup__btn_type_create" type="submit">Создать</button>
@@ -120,7 +120,15 @@
         <button class="place__delete" type="button"></button> 
       </div>
     </template>
-
+    <template class="popup popup-imgs" id="popupImg">
+      <button class="popup__close popup__close_type_img" type="button">
+        <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
+      </button>
+      <div class="popup__img-container">
+        <img class="popup__photo" src="https://images.unsplash.com/photo-1676153838070-b62db9265c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80">
+        <h2 class="popup__title-photo">Швейцария</h2>
+      </div>
+    </template> 
       <script src="./scripts/index.js"></script>
   </body>
 </html>
