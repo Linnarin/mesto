@@ -11,8 +11,3 @@
 .place__like:hover {
   opacity: 50%;
 }
-
-.place__like:active {
-  background-image: url(../../../images/blackheart.svg);
-  opacity: 100%;
-}

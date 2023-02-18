@@ -94,7 +94,7 @@ const getItemElement = (link, name) => {
   const newItemImg = newItemElement.querySelector('.place__img')
   newItemImg.src = `${link}`;
   const likeActive = newItemElement.querySelector('.place__like').addEventListener('click', function (event) {
-    event.target.classList.toggle('.place__like_active');
+    event.target.classList.toggle('place__like_active');
   }); 
   newItemImg.addEventListener('click', () => {
     openPopupImg(link, name);
@@ -128,24 +128,18 @@ const toggleOpenImgPopup = (evt) => {
 
 const templatePlaceImg = document.querySelector("#popupImg");
 
-function openPopupImg (name, link) {
+function openPopupImg (link, name) {
   const photo = templatePlaceImg.querySelector('.popup__photo');
-  console.log(photo)
   photo.src = link;
   const title = templatePlaceImg.querySelector('.popup__title-photo');
   title.textContent = name;
-  popupImg.classList.add('popup_open');
-  
+  templatePlaceImg.classList.add('popup_opened');  
 }
-/*
-const getPopupImg = (link, name) => {
-  const newPopupImg = templatePlaceImg.content.cloneNode(true);
-  const newPopupImgTitle = newPopupImg.querySelector(".popup__title-photo").textContent = `${name}`;
-  const newPopupImgPhoto = newPopupImg.querySelector('.popup__photo')
-  newPopupImgPhoto.src = `${link}`;
-  const closePopupImgButton = newPopupImg.querySelector('.popup__close')
-  closePopupImgButton.addEventListener('click', toggleOpenImgPopup)
-  templatePlaceImg.classList.add('popup_opened');
-  return newPopupImg
+
+const closeButtonImg = templatePlaceImg.querySelector('.popup__close');
+
+function CloseImgPopup () {
+  templatePlaceImg.classList.remove('popup_opened');
 }
-*/
+
+closeButtonImg.addEventListener('click', CloseImgPopup);

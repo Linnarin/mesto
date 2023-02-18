@@ -5,8 +5,8 @@
   background: transparent;
   cursor: pointer;
   position: absolute;
-  top: -42px;
-  right: -32px;
+  top: -40px;
+  right: -40px;
 }
   
 @media (max-width: 694px) {
