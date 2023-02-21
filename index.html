@@ -30,36 +30,12 @@
         </button>
       </section>
       <section class="attractions">
-          <div class="place">
-            <img class="place__img" src="./images/karachayevsk.jpg" alt="Фото храма">
-            <div class="place__caption">
-              <h2 class="place__title">Карачаевск</h2>
-              <button class="place__like" type="button"></button>
-            </div>  
-            <button class="place__delete" type="button"></button>
-          </div>
-          <div class="place">
-            <img class="place__img" src="./images/Elbrus.jpg" alt="Фото горы Эльбрус">
-            <div class="place__caption">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-            <button class="place__delete" type="button"></button>
-          </div>
-          <div class="place">
-            <img class="place__img" src="./images/Dombay.jpg" alt="Фото гор на Домбае">
-            <div class="place__caption">
-              <h2 class="place__title">Домбай</h2>
-              <button class="place__like" type="button"></button>
-            </div>  
-            <button class="place__delete" type="button"></button>
-          </div>    
       </section> 
     </main>
     <footer class="footer">
       <p class="footer__text">&#169; 2020 Mesto Russia</p> 
     </footer>
-    <section class="popup">
+    <section class="popup popup-profile">
       <div class="popup__container">
         <button class="popup__close" type="button">
           <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
@@ -72,7 +48,7 @@
         </form>
       </div>
     </section> 
-    <section class="popup" id="popupPlace">
+    <section class="popup popup-place" id="popupPlace">
       <div class="popup__container">
         <button class="popup__close popup__close_type_attraction" type="button">
           <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
@@ -95,7 +71,7 @@
         <button class="place__delete" type="button"></button> 
       </div>
     </template>
-    <section class="popup" id="popupImg">
+    <section class="popup popup-img" id="popupImg">
       <div class="popup__img-container">
         <img class="popup__photo" src="https://images.unsplash.com/photo-1676153838070-b62db9265c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80" alt="Фото пользователя">
         <button class="popup__close" type="button">

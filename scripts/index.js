@@ -2,36 +2,43 @@ const buttonAbout = document.querySelector(".profile__edit");
 
 const popup = document.querySelector(".popup");
 
-const buttonClose = popup.querySelector(".popup__close");
+const closeButtons = document.querySelectorAll('.popup__close');
 
+const popupProfile = document.querySelector(".popup-profile");
 const getName = document.querySelector('.popup__input-text_type_name');
 const profession = document.querySelector('.popup__input-text_type_profession');
-let profileName = document.querySelector('.profile__name');
-let profileProfession = document.querySelector('.profile__profession');
-let popupform = document.querySelector('.popup__input');
+const profileName = document.querySelector('.profile__name');
+const profileProfession = document.querySelector('.profile__profession');
+const popupform = popupProfile.querySelector('.popup__input');
 
-function profileEdit () {
-  popup.classList.add("popup_opened");
+function openProfileEdit () {
+  openPopup(popup);
   getName.value = profileName.textContent;
-  profession.value = profileProfession.textContent;
-  
+  profession.value = profileProfession.textContent;  
 }
 
-function profileClose () {
-  popup.classList.remove("popup_opened")
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
-buttonAbout.addEventListener('click', profileEdit);
-buttonClose.addEventListener('click', profileClose);
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
 
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+
+buttonAbout.addEventListener('click', openProfileEdit);
 
 function addInfo(evt) {
   evt.preventDefault();
   profileName.textContent = getName.value;
   profileProfession.textContent = profession.value;
-  profileClose ();
 }
-  
+
 popupform.addEventListener('submit', addInfo);
 
 const initialCards = [
@@ -79,7 +86,6 @@ const toggleOpenAddPopup = () => {
 }
 
 buttonAddAttraction.addEventListener('click', toggleOpenAddPopup);
-buttonAttrClose.addEventListener('click', toggleOpenAddPopup);
 
 const handleDelete = (evt) => {
   evt.target.closest('.place').remove();
@@ -127,19 +133,12 @@ const toggleOpenImgPopup = (evt) => {
 }
 
 const templatePlaceImg = document.querySelector("#popupImg");
+const photo = templatePlaceImg.querySelector('.popup__photo');
+const title = templatePlaceImg.querySelector('.popup__title-photo');
 
 function openPopupImg (link, name) {
-  const photo = templatePlaceImg.querySelector('.popup__photo');
   photo.src = link;
-  const title = templatePlaceImg.querySelector('.popup__title-photo');
+  photo.alt = name;
   title.textContent = name;
   templatePlaceImg.classList.add('popup_opened');  
 }
-
-const closeButtonImg = templatePlaceImg.querySelector('.popup__close');
-
-function CloseImgPopup () {
-  templatePlaceImg.classList.remove('popup_opened');
-}
-
-closeButtonImg.addEventListener('click', CloseImgPopup);
