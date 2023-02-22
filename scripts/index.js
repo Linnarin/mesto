@@ -81,17 +81,13 @@ const buttonAddAttraction = document.querySelector(".profile__add");
 const buttonAttrClose = document.querySelector(".popup__close_type_attraction");
 
 
-const toggleOpenAddPopup = () => {
-  popupAdd.classList.toggle('popup_opened');
-}
-
-buttonAddAttraction.addEventListener('click', toggleOpenAddPopup);
+buttonAddAttraction.addEventListener('click', () => { openPopup(popupAdd)})
 
 const handleDelete = (evt) => {
   evt.target.closest('.place').remove();
 }
 
-let popupFormPlace = document.forms.popupformplace
+const popupFormPlace = document.forms.popupformplace
 
 
 const getItemElement = (link, name) => {
@@ -99,6 +95,7 @@ const getItemElement = (link, name) => {
   const newItemTitle = newItemElement.querySelector('.place__title').textContent = `${name}`;
   const newItemImg = newItemElement.querySelector('.place__img')
   newItemImg.src = `${link}`;
+  newItemImg.alt = `${name}`;
   const likeActive = newItemElement.querySelector('.place__like').addEventListener('click', function (event) {
     event.target.classList.toggle('place__like_active');
   }); 
@@ -126,11 +123,7 @@ popupFormPlace.addEventListener('submit', (evt) => {
   popupFormPlace.reset();
 })
 
-buttonCreate.addEventListener('click', toggleOpenAddPopup)
-
-const toggleOpenImgPopup = (evt) => {
-  evt.target.classList.toggle('popup_opened')
-}
+buttonCreate.addEventListener('click', () => closePopup(popupAdd))
 
 const templatePlaceImg = document.querySelector("#popupImg");
 const photo = templatePlaceImg.querySelector('.popup__photo');
@@ -140,5 +133,5 @@ function openPopupImg (link, name) {
   photo.src = link;
   photo.alt = name;
   title.textContent = name;
-  templatePlaceImg.classList.add('popup_opened');  
+  openPopup(templatePlaceImg);  
 }
