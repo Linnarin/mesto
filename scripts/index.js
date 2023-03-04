@@ -4,12 +4,13 @@ const popup = document.querySelector(".popup");
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
-const popupProfile = document.querySelector(".popup-profile");
+const popupProfile = document.querySelector("#popupProfile");
 const getName = document.querySelector('.popup__input-text_type_name');
 const profession = document.querySelector('.popup__input-text_type_profession');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 const popupform = popupProfile.querySelector('.popup__input');
+const buttonSave = document.querySelector(".save-button");
 
 function openProfileEdit () {
   openPopup(popup);
@@ -37,9 +38,32 @@ function addInfo(evt) {
   evt.preventDefault();
   profileName.textContent = getName.value;
   profileProfession.textContent = profession.value;
+  closePopup(popupProfile)
 }
 
 popupform.addEventListener('submit', addInfo);
+
+//ШАБЛОННЫЕ ОБРАБОТЧИКИ
+//обработчик открытия формы
+function openPopup (element) {
+  element.classList.add('popup_opened');
+  //закрываем попап по нажатию на Esc
+  window.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+      closePopup (element);
+    }
+  });
+}
+//обработчик закрытия формы
+function closePopup (element) {
+  element.classList.remove('popup_opened');
+  //удаляем обработчик кнопки Esc
+  window.removeEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+      closePopup (element);
+    }
+  });
+}
 
 const initialCards = [
   {
@@ -79,6 +103,7 @@ const titleForm = document.querySelector(".popup__input-text_type_title");
 const urlForm = document.querySelector(".popup__input-text_type_url");
 const buttonAddAttraction = document.querySelector(".profile__add");
 const buttonAttrClose = document.querySelector(".popup__close_type_attraction");
+
 
 
 buttonAddAttraction.addEventListener('click', () => { openPopup(popupAdd)})
@@ -135,3 +160,24 @@ function openPopupImg (link, name) {
   title.textContent = name;
   openPopup(templatePlaceImg);  
 }
+
+popup.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popup)
+  }
+})
+
+popupAdd.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupAdd)
+  }
+})
+
+templatePlaceImg.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(templatePlaceImg)
+  }
+})
+
+
+
