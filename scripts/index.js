@@ -1,29 +1,19 @@
 const buttonAbout = document.querySelector(".profile__edit");
 
-const popup = document.querySelector(".popup");
+const popup = document.querySelectorAll(".popup");
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
 const popupProfile = document.querySelector("#popupProfile");
-const getName = document.querySelector('.popup__input-text_type_name');
+const nameGet = document.querySelector('.popup__input-text_type_name');
 const profession = document.querySelector('.popup__input-text_type_profession');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
-const popupform = popupProfile.querySelector('.popup__input');
-const buttonSave = document.querySelector(".save-button");
 
 function openProfileEdit () {
-  openPopup(popup);
-  getName.value = profileName.textContent;
+  openPopup(popupProfile);
+  nameGet.value = profileName.textContent;
   profession.value = profileProfession.textContent;  
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
 }
 
 closeButtons.forEach((button) => {
@@ -31,37 +21,28 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-
 buttonAbout.addEventListener('click', openProfileEdit);
 
-function addInfo(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = getName.value;
+  profileName.textContent = nameGet.value;
   profileProfession.textContent = profession.value;
   closePopup(popupProfile)
 }
 
-popupform.addEventListener('submit', addInfo);
+popupProfile.addEventListener('submit', handleProfileFormSubmit);
 
-//ШАБЛОННЫЕ ОБРАБОТЧИКИ
-//обработчик открытия формы
-function openPopup (element) {
-  element.classList.add('popup_opened');
-  //закрываем попап по нажатию на Esc
-  window.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-      closePopup (element);
-    }
-  });
+function closePopup(popup) { 
+  popup.classList.remove('popup_opened'); 
+  document.removeEventListener('keydown', evt)
 }
-//обработчик закрытия формы
-function closePopup (element) {
-  element.classList.remove('popup_opened');
-  //удаляем обработчик кнопки Esc
-  window.removeEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-      closePopup (element);
-    }
+
+function openPopup(popup) { 
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      popup.classList.remove('popup_opened')
+    };
   });
 }
 
@@ -93,7 +74,7 @@ const initialCards = [
 ]; 
 
 const templatePlace = document.querySelector("#attraction");
-const attractions = document.querySelector(".attractions");
+const cardsContainer = document.querySelector(".attractions");
 
 const buttonAdd = document.querySelector(".profile__add");
 const attraction = document.querySelector(".popup-attraction");
@@ -115,7 +96,7 @@ const handleDelete = (evt) => {
 const popupFormPlace = document.forms.popupformplace
 
 
-const getItemElement = (link, name) => {
+const createCard = (link, name) => {
   const newItemElement = templatePlace.content.cloneNode(true);
   const newItemTitle = newItemElement.querySelector('.place__title').textContent = `${name}`;
   const newItemImg = newItemElement.querySelector('.place__img')
@@ -128,24 +109,25 @@ const getItemElement = (link, name) => {
     openPopupImg(link, name);
     console.log(link);
   });
-  const deleteButton = newItemElement.querySelector('.place__delete');
-  deleteButton.addEventListener('click', handleDelete);
+  const buttonDelete = newItemElement.querySelector('.place__delete');
+  buttonDelete.addEventListener('click', handleDelete);
 
   return newItemElement
 }
 
-const renderItem = (link, name) => {
-  attractions.prepend(getItemElement(link, name))
+const renderCard = (link, name) => {
+  cardsContainer.prepend(createCard(link, name))
 }
 
 initialCards.forEach((item) => {
-  renderItem(item.link, item.name)
+  renderCard(item.link, item.name)
 })
 
 popupFormPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  renderItem(urlForm.value, titleForm.value)
+  renderCard(urlForm.value, titleForm.value)
   popupFormPlace.reset();
+  buttonCreate.setAttribute('disabled', 'disabled');
 })
 
 buttonCreate.addEventListener('click', () => closePopup(popupAdd))
@@ -161,23 +143,13 @@ function openPopupImg (link, name) {
   openPopup(templatePlaceImg);  
 }
 
-popup.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
-    closePopup(popup)
-  }
-})
 
-popupAdd.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
-    closePopup(popupAdd)
-  }
-})
-
-templatePlaceImg.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
-    closePopup(templatePlaceImg)
-  }
-})
+popup.forEach(popup => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(popup)
+    }
+  }  )}) 
 
 
 

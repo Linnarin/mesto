@@ -9,3 +9,7 @@
   top: 20px;
   right: 20px;
 }
+
+.place__delete:hover {
+  background-image: url(../../../images/Trash1.svg);
+}
