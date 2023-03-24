@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const buttonAbout = document.querySelector(".profile__edit");
 
 const popups = document.querySelectorAll(".popup");
@@ -14,7 +17,8 @@ const profileProfession = document.querySelector('.profile__profession');
 function openProfileEdit () {
   openPopup(popupProfile);
   nameGet.value = profileName.textContent;
-  profession.value = profileProfession.textContent;  
+  profession.value = profileProfession.textContent;
+  formValidationProfileEdit.resetValidation();
 }
 
 closeButtons.forEach((button) => {
@@ -35,11 +39,11 @@ popupProfile.addEventListener('submit', handleProfileFormSubmit);
 
 
 function handleClosePopupByEsc(evt) {
-    if (evt.key === "Escape") {
-      const popupOpen = document.querySelector('.popup_opened'); 
-      closePopup(popupOpen)
-    };
-  }
+  if (evt.key === "Escape") {
+    const popupOpen = document.querySelector('.popup_opened'); 
+    closePopup(popupOpen)
+  };
+}
  
 function closePopup(popupOpen) {
   popupOpen.classList.remove('popup_opened'); 
@@ -77,7 +81,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
-
+const popupFormEditElement = document.forms["popupform"];
+const popupAddFormLinkElement = document.forms["popupformplace"];
 const templatePlace = document.querySelector("#attraction");
 const cardsContainer = document.querySelector(".attractions");
 
@@ -90,51 +95,48 @@ const urlForm = document.querySelector(".popup__input-text_type_url");
 const buttonAddAttraction = document.querySelector(".profile__add");
 const buttonAttrClose = document.querySelector(".popup__close_type_attraction");
 
-
-
 buttonAddAttraction.addEventListener('click', () => { openPopup(popupAdd)})
 
-const handleDelete = (evt) => {
-  evt.target.closest('.place').remove();
-}
-
-const popupFormPlace = document.forms.popupformplace
-
-
-const createCard = (link, name) => {
-  const newItemElement = templatePlace.content.cloneNode(true);
-  const newItemTitle = newItemElement.querySelector('.place__title').textContent = `${name}`;
-  const newItemImg = newItemElement.querySelector('.place__img')
-  newItemImg.src = `${link}`;
-  newItemImg.alt = `${name}`;
-  const likeActive = newItemElement.querySelector('.place__like').addEventListener('click', function (event) {
-    event.target.classList.toggle('place__like_active');
-  }); 
-  newItemImg.addEventListener('click', () => {
-    openPopupImg(link, name);
-    console.log(link);
-  });
-  const buttonDelete = newItemElement.querySelector('.place__delete');
-  buttonDelete.addEventListener('click', handleDelete);
-
-  return newItemElement
-}
-
-const renderCard = (link, name) => {
-  cardsContainer.prepend(createCard(link, name))
-}
-
 initialCards.forEach((item) => {
-  renderCard(item.link, item.name)
-})
+  const card = new Card(item, '#attraction');
+  const cardElement = card.generateCard();
+  document.querySelector('.attractions').prepend(cardElement);
+});
 
-popupFormPlace.addEventListener('submit', (evt) => {
+
+const validationConfig = {
+  formSelector: '.popup__input',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__btn',
+  inactiveButtonClass: 'popup__btn_disabled',
+  inputErrorClass: 'popup__input-text-error',
+  errorClass: 'popup__input-text-error_active'
+}
+
+const formValidationProfileEdit = new FormValidator(
+  validationConfig,
+  popupFormEditElement
+);
+const formValidationAddPlace = new FormValidator(
+  validationConfig,
+  popupAddFormLinkElement
+);
+
+popupAddFormLinkElement.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  renderCard(urlForm.value, titleForm.value)
-  popupFormPlace.reset();
+  const cardItem = {
+    name: titleForm.value,
+    link: urlForm.value,
+  };
+  const userCard = new Card(cardItem, '#attraction');
+  const cardElement = userCard.generateCard();
+  closePopup(popupAdd);
+  document.querySelector('.attractions').prepend(cardElement);
+  popupAddFormLinkElement.reset();
   buttonCreate.setAttribute('disabled', 'disabled');
-  buttonCreate.classList.add('popup__btn_disabled')
-})
+  buttonCreate.classList.add('popup__btn_disabled');
+  formValidationAddPlace.resetValidation();
+});
 
 buttonCreate.addEventListener('click', () => closePopup(popupAdd))
 
@@ -157,5 +159,8 @@ popups.forEach(popup => {
     }
   }  )}) 
 
+  formValidationProfileEdit.enableValidation();
+  formValidationAddPlace.enableValidation();
 
 
+  
