@@ -1,7 +1,6 @@
 import {openPopupImg} from "./index.js";
-
 class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, openPopupImg) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
@@ -16,21 +15,32 @@ class Card {
   
       return cardElement;
     }
-    _setEventListeners() {
-      
-      this._element.querySelector('.place__like').addEventListener('click', function (event) {
-        event.target.classList.toggle('place__like_active');
-      }); 
-      
-      this._element.querySelector('.place__delete').addEventListener('click', () => {
-        this._handleDelete();
-      });
 
-      this._element.querySelector('.place__img').addEventListener('click', () => {
-        openPopupImg(this._link, this._name);
-      });
-    }
+    _setEventListeners() {
+      this._element.querySelector('.place__like').addEventListener('click', () => {
+        this._toggleLike()});
+      
     
+      this._element.querySelector('.place__delete').addEventListener('click', () => {
+        this._deleteCard()});
+    
+      this._element.querySelector('.place__img').addEventListener('click', () => {
+        this._openPopupImg()});
+    
+  }
+
+  _toggleLike() {
+    this._element.querySelector('.place__like').classList.toggle('place__like_active')
+  }
+
+  _deleteCard() {
+    this._element.remove();
+  }
+
+  _openPopupImg() {
+    openPopupImg(this._link, this._name);
+  }
+  
     generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
@@ -41,7 +51,7 @@ class Card {
     }
     
     _handleDelete() {
-      this._element.remove();
+      
     }
   }
    

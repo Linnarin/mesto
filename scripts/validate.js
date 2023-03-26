@@ -73,3 +73,4 @@ const activeButton = (validationConfig, buttonElement) => {
 }
 
 enableValidation(validationConfig); 
+

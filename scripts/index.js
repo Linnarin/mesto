@@ -97,12 +97,20 @@ const buttonAttrClose = document.querySelector(".popup__close_type_attraction");
 
 buttonAddAttraction.addEventListener('click', () => { openPopup(popupAdd)})
 
-initialCards.forEach((item) => {
+function createCard(item) {
   const card = new Card(item, '#attraction');
   const cardElement = card.generateCard();
-  document.querySelector('.attractions').prepend(cardElement);
-});
+  return cardElement
+}
 
+function addCard(item) {
+  cardsContainer.prepend(item)
+}
+
+initialCards.forEach((item) => {
+  const newCard = createCard(item);
+  addCard(newCard);
+});
 
 const validationConfig = {
   formSelector: '.popup__input',
@@ -119,13 +127,10 @@ popupAddFormLinkElement.addEventListener("submit", (evt) => {
     name: titleForm.value,
     link: urlForm.value,
   };
-  const userCard = new Card(cardItem, '#attraction');
-  const cardElement = userCard.generateCard();
-  closePopup(popupAdd);
-  document.querySelector('.attractions').prepend(cardElement);
+  const newCard = createCard(cardItem);
+  addCard(newCard);
   popupAddFormLinkElement.reset();
-  buttonCreate.setAttribute('disabled', 'disabled');
-  buttonCreate.classList.add('popup__btn_disabled');
+  closePopup(popupAdd);
 });
 
 buttonCreate.addEventListener('click', () => closePopup(popupAdd))
