@@ -1,10 +1,10 @@
- 
- class Card {
-    constructor(data, templateSelector, openPopupImg) {
+import {openPopupImg} from "./index.js";
+
+class Card {
+    constructor(data, templateSelector) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
-      this._openPopupImg = openPopupImg;
     }
   
     _getTemplate() {
@@ -25,10 +25,9 @@
       this._element.querySelector('.place__delete').addEventListener('click', () => {
         this._handleDelete();
       });
-      
+
       this._element.querySelector('.place__img').addEventListener('click', () => {
-        console.log(this)
-        this._openPopupImg(this._link, this._name);
+        openPopupImg(this._link, this._name);
       });
     }
     
@@ -43,13 +42,6 @@
     
     _handleDelete() {
       this._element.remove();
-    }
-
-    _openPopupImg (link, name) {
-      this.photo.src = link;
-      this.photo.alt = name;
-      this.title.textContent = name;
-      openPopup(templatePlaceImg);  
     }
   }
    

@@ -18,7 +18,7 @@ function openProfileEdit () {
   openPopup(popupProfile);
   nameGet.value = profileName.textContent;
   profession.value = profileProfession.textContent;
-  formValidationProfileEdit.resetValidation();
+  validatorEditProfile.removeValidationErrors();
 }
 
 closeButtons.forEach((button) => {
@@ -113,15 +113,6 @@ const validationConfig = {
   errorClass: 'popup__input-text-error_active'
 }
 
-const formValidationProfileEdit = new FormValidator(
-  validationConfig,
-  popupFormEditElement
-);
-const formValidationAddPlace = new FormValidator(
-  validationConfig,
-  popupAddFormLinkElement
-);
-
 popupAddFormLinkElement.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const cardItem = {
@@ -135,7 +126,6 @@ popupAddFormLinkElement.addEventListener("submit", (evt) => {
   popupAddFormLinkElement.reset();
   buttonCreate.setAttribute('disabled', 'disabled');
   buttonCreate.classList.add('popup__btn_disabled');
-  formValidationAddPlace.resetValidation();
 });
 
 buttonCreate.addEventListener('click', () => closePopup(popupAdd))
@@ -151,6 +141,7 @@ function openPopupImg (link, name) {
   openPopup(templatePlaceImg);  
 }
 
+export {openPopupImg};
 
 popups.forEach(popup => {
   popup.addEventListener("click", (evt) => {
@@ -159,8 +150,13 @@ popups.forEach(popup => {
     }
   }  )}) 
 
-  formValidationProfileEdit.enableValidation();
-  formValidationAddPlace.enableValidation();
+  const validatorEditProfile = new FormValidator(validationConfig, popupFormEditElement);
+  validatorEditProfile.enableValidation();
+  
+  //валидация формы создания карточки
+  const validatorformAddCard = new FormValidator(validationConfig, popupAddFormLinkElement);
+  validatorformAddCard.enableValidation();
+  
 
 
   
