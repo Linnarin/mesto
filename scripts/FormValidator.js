@@ -68,7 +68,7 @@ removeValidationErrors = () => {
     this._hideInputError(inputElement);
     });
   }
-
+/*
 enableValidation = () => {
   this._inputs.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
@@ -76,6 +76,10 @@ enableValidation = () => {
     });
     this._setEventListeners(this._inputs);
   });
+}
+*/
+enableValidation = () => {
+  this._setEventListeners(this._inputs);
 }
 }
   export default FormValidator;

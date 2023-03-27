@@ -95,7 +95,11 @@ const urlForm = document.querySelector(".popup__input-text_type_url");
 const buttonAddAttraction = document.querySelector(".profile__add");
 const buttonAttrClose = document.querySelector(".popup__close_type_attraction");
 
-buttonAddAttraction.addEventListener('click', () => { openPopup(popupAdd)})
+buttonAddAttraction.addEventListener('click', () => { 
+  popupAddFormLinkElement.reset();
+  openPopup(popupAdd)
+  validatorformAddCard.disabledButton(validationConfig);
+})
 
 function createCard(item) {
   const card = new Card(item, '#attraction');
@@ -133,7 +137,7 @@ popupAddFormLinkElement.addEventListener("submit", (evt) => {
   closePopup(popupAdd);
 });
 
-buttonCreate.addEventListener('click', () => closePopup(popupAdd))
+
 
 const templatePlaceImg = document.querySelector("#popupImg");
 const photo = templatePlaceImg.querySelector('.popup__photo');
