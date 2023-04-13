@@ -5,28 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="надпись Место">                
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="надпись Место">                
     </header>    
     <main>
       <section class="profile">
         <div class="profile__data">
-          <img class="profile__avatar" src="./images/Kusto.jpg" alt="Фото анкеты">
+          <img class="profile__avatar" src="<%=require('./images/Kusto.jpg')%>" alt="Фото анкеты">
           <div class="profile__change">
           <div class="profile__info"> 
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
           </div>
           <button class="profile__edit" type="button">
-            <img src="./images/Profileedit.svg" class="profile__edit-img" alt="картинка карандаша">
+            <img src="<%=require('./images/Profileedit.svg')%>" class="profile__edit-img" alt="картинка карандаша">
           </button>
         </div>
         </div>
         <button class="profile__add" type="submit">
-          <img class="profile__add-img" src="./images/addbutton.svg" alt="плюс">  
+          <img class="profile__add-img" src="<%=require('./images/addbutton.svg')%>" alt="плюс">  
         </button>
       </section>
       <section class="attractions">
@@ -38,7 +37,7 @@
     <section class="popup popup-profile" id="popupProfile">
       <div class="popup__container">
         <button class="popup__close" type="button">
-          <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
+          <img class="popup__close-img" src="<%=require('./images/CloseIcon.svg')%>" alt="Крестик">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__input" name="popupform" type="submit" novalidate>
@@ -57,7 +56,7 @@
     <section class="popup popup-place" id="popupPlace">
       <div class="popup__container">
         <button class="popup__close popup__close_type_attraction" type="button">
-          <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
+          <img class="popup__close-img" src="<%=require('./images/CloseIcon.svg')%>" alt="Крестик">
         </button>
         <h2 class="popup__title popup__title_type_attraction">Новое место</h2>
         <form class="popup__input popup__input_type_attraction" name="popupformplace" novalidate>
@@ -75,7 +74,7 @@
     </section> 
     <template id="attraction">
       <div class="place">
-        <img class="place__img" src="./images/karachayevsk.jpg" alt="Фото храма">
+        <img class="place__img" src="<%=require('./images/karachayevsk.jpg')%>" alt="Фото храма">
         <div class="place__caption">
           <h2 class="place__title">Карачаевск</h2>
           <button class="place__like" type="button"></button>
@@ -87,12 +86,11 @@
       <div class="popup__img-container">
         <img class="popup__photo" src="https://images.unsplash.com/photo-1676153838070-b62db9265c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80" alt="Фото пользователя">
         <button class="popup__close" type="button">
-          <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Крестик">
+          <img class="popup__close-img" src="<%=require('./images/CloseIcon.svg')%>" alt="Крестик">
         </button>
         <h2 class="popup__title-photo">Швейцария</h2>
       </div>
     </section>
-    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>
   

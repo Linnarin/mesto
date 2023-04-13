@@ -82,4 +82,4 @@ enableValidation = () => {
   this._setEventListeners(this._inputs);
 }
 }
-  export default FormValidator;
+export { FormValidator };

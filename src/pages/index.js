@@ -1,5 +1,121 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import "./index.css";
+
+import {
+  buttonAbout,
+  buttonAdd,
+  cardsContainer,
+  nameEdit,
+  profEdit,
+  editForm,
+  titleForm,
+  urlForm,
+  formAddCardPopup,
+} from "../utils/Constants.js";
+
+import { Card } from "../components/card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { initialCards, validationConfig } from "../utils/Constants.js";
+import  Section  from "../components/section.js";
+import  PopupWithForm  from "../components/PopupWithForm.js";
+import  PopupWithImage  from "../components/PopupWithImage.js";
+import UserInfo from "../components/userInfo.js";
+
+
+
+
+//ВАЛИДАЦИЯ
+//валидация формы редактирования профиля
+const validatorEditProfile = new FormValidator(validationConfig, editForm);
+validatorEditProfile.enableValidation();
+
+//валидация формы создания карточки
+const validatorformAddCard = new FormValidator(validationConfig, formAddCardPopup);
+validatorformAddCard.enableValidation();
+
+
+//открываем попап редактирования профиля. Вызываем в слушателе кнопки редактирования.
+const popupEditProfile = () => {
+  const defaultUserData = userProfile.getUserInfo();//данные по умолчанию (ловим из профиля)
+  //переносим данные в инпуты формы
+  nameEdit.value = defaultUserData.userName;//в инпут имени дефолтное имя
+  profEdit.value = defaultUserData.userAbout;//в инпут профессии дефолтную профессиию
+  validatorEditProfile.removeValidationErrors();//сбрасываем ошибки
+  popupFormProfile.open();//открыли попап редактирования профиля
+}
+
+//ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ
+const userProfile = new UserInfo({
+  nameSelector: ".profile__name",//html-строка имени профиля
+  aboutSelector: ".profile__profession",//html-строка профессии
+});
+
+//передаем в профиль данные из формы. Вызываем при создании попапа.
+const handleFormSubmitEdit = (data)=> {
+  userProfile.setUserInfo({
+    userName: data.nameform,//инпут имени
+    userAbout: data.professionform,//инпут профессии
+  });
+}
+
+//СОЗДАЕМ КАРТОЧКИ
+
+//создание карточки
+function createCard (data) {
+  const newCard = new Card(data, '#attraction', () => {
+    popupZoomImage.open(data);
+  });
+  const cardElement = newCard.generateCard();
+  return cardElement;
+}
+
+//карточки из массива
+const defaultCard = new Section (
+  {
+    renderer: (item) => {
+      const newCards = createCard (item);
+      defaultCard.addItem(newCards);//вставляем карточки на страницу
+    }
+  },
+  '.attractions')
+  defaultCard.rendererItems(initialCards);//передаем массив данных карточек
+
+//отрисовка карточки в DOM
+const renderCard = (data) => {
+  cardsContainer.prepend(createCard(data));
+};
+
+// создаем карточку пользователя
+const addUserCard = () => {
+  const cardItem = {
+    name: titleForm.value,
+    link: urlForm.value,
+  };
+  renderCard(cardItem);
+}
+
+//ПОПАПЫ
+//попап редактирования профиля
+const popupFormProfile = new PopupWithForm ('.popup-profile', handleFormSubmitEdit);
+popupFormProfile.setEventListeners();
+//попап добавления пользовательской карточки
+const popupAddCard = new PopupWithForm ('.popup-place', addUserCard);
+popupAddCard.setEventListeners();
+const popupZoomImage = new PopupWithImage('.popup-img');
+popupZoomImage.setEventListeners();
+
+//СЛУШАТЕЛИ
+//открываем попап редактирования профиля
+buttonAbout.addEventListener('click', popupEditProfile);//открываем попап редактирования профиля
+//открываем попап добавления пользовательской карточки
+buttonAdd.addEventListener('click', () => {
+  popupAddCard.open();
+  validatorformAddCard.removeValidationErrors();
+});
+
+
+/*
+import Card from "../components/card.js";
+import FormValidator from "../../scripts/FormValidator.js";
 
 const buttonAbout = document.querySelector(".profile__edit");
 
@@ -154,10 +270,9 @@ export {openPopupImg};
 
 popups.forEach(popup => {
   popup.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
+    if ( {
       closePopup(popup)
     }
-  }  )}) 
 
   const validatorEditProfile = new FormValidator(validationConfig, popupFormEditElement);
   validatorEditProfile.enableValidation();
@@ -166,6 +281,6 @@ popups.forEach(popup => {
   const validatorformAddCard = new FormValidator(validationConfig, popupAddFormLinkElement);
   validatorformAddCard.enableValidation();
   
-
+*/
 
   
