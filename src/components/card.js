@@ -4,45 +4,48 @@ class Card {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._template = this._getTemplate();
+    this._element = this._template.querySelector(".place");
+    this._placeImage = this._element.querySelector(".place__img");
+    this._placeTitle = this._element.querySelector(".place__title");
+    this._placeDelete = this._element.querySelector(".place__delete");
+    this._placeLike = this._element.querySelector(".place__like");
+    this._setEventListeners();
     this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
-      .content
-      .querySelector('.place')
-      .cloneNode(true);
-
+      .content.cloneNode(true);
     return cardElement;
   }
 
-  _zoomImageCard() {
-    this._handleCardClick(this._data);
-  }
-  _setEventListeners() {
-    this._element.querySelector('.place__like').addEventListener('click', () => {
-      this._toggleLike()});
-    this._element.querySelector('.place__delete').addEventListener('click', () => {
-      this._deleteCard()});
-    this._element.querySelector('.place__img').addEventListener('click', () => {
-      this._zoomImageCard()});  
-  }
-
   _toggleLike() {
-    this._element.querySelector('.place__like').classList.toggle('place__like_active')
+    this._placeLike.classList.toggle('place__like_active')
+  }
+   
+  _setEventListeners() {
+    this._placeLike.addEventListener('click', () => {
+      this._toggleLike()});
+    this._placeDelete.addEventListener('click', () => {
+      this._deleteCard()});
+    this._placeImage.addEventListener('click', () => {
+      this._zoomImageCard()});  
   }
 
   _deleteCard() {
     this._element.remove();
   }
 
+  _zoomImageCard() {
+    this._handleCardClick(this._data);
+  }
+
   generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector('.place__img').src = this._link;
-    this._element.querySelector('.place__img').alt = this._name;
-    this._element.querySelector('.place__title').textContent = this._name;
+    this._placeImage.src = this._link;
+    this._placeImage.alt = this._name;
+    this._placeTitle.textContent = this._name;
     return this._element;
   }
 
@@ -54,15 +57,3 @@ class Card {
 }
 
 export { Card };
-
-/*
-import {openPopupImg} from "../pages/index.js";
-export default class Card {
-    constructor(data, templateSelector) {
-      this._name = data.name;
-      this._link = data.link;
-      this._templateSelector = templateSelector;
-    }
-
-  }
-*/

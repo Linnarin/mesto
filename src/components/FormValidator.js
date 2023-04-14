@@ -45,22 +45,22 @@ _hasInvalidInput = (inputList) => {
  });
 }
 
-_toggleButtonState = (inputList) => {
-  if(this._hasInvalidInput(inputList)) {
+_toggleButtonState = () => {
+  if (this._hasInvalidInput(this._inputs)) {
    this.disabledButton (this._validationConfig);
   } else {
     this._deleteDisabledButton (this._validationConfig);
 }
 }
 
-_setEventListeners = (inputList) => {
-  this._toggleButtonState(inputList);
+_setEventListeners = () => {
   this._inputs.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
+    inputElement.addEventListener("input", () => {
       this._checkInputValidity(inputElement);
-      this._toggleButtonState(inputList);
+      this._toggleButtonState();
     });
   });
+  this._toggleButtonState();
 };
 
 removeValidationErrors = () => {
@@ -79,7 +79,7 @@ enableValidation = () => {
 }
 */
 enableValidation = () => {
-  this._setEventListeners(this._inputs);
+  this._setEventListeners();
 }
 }
 export { FormValidator };
