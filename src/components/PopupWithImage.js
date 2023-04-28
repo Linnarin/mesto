@@ -1,3 +1,5 @@
+
+
 import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
@@ -6,9 +8,9 @@ export default class PopupWithImage extends Popup {
     this._photo = this._popup.querySelector('.popup__photo');
     this._title = this._popup.querySelector('.popup__title-photo');
   }
-  
-    openPopup(data) {
-      super.openPopup();
+    //открытие попапа zoom-картинки +
+    open(data) {
+      super.open();
       this._photo.src = data.link;
       this._photo.alt = data.name;
       this._title.textContent = data.name;

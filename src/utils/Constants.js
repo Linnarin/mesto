@@ -1,38 +1,46 @@
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
+/*
+
+
+export const aboutButton = document.querySelector(".profile__edit");
+export const popupEditProfile = document.querySelector(".popup-editing");
+export const popupEditProfileFormName = popupEditProfile.querySelector(".popup__input_type_name");
+export const popupEditProfileFormVocation = document.getElementById('nameform');
+export const popupFormEditElement = document.forms["form-edit-profile"];
+export const popupFormEditAvatar = document.forms["form-edit-avatar"];
+export const placesContainer = document.querySelector('.attractions')
+export const popupAdd = document.querySelector(".popup-add");
+export const popupAddFormLinkElement = document.forms["form-add-place"];
+export const addPlaceButton = document.querySelector(".profile__add");
+export const editAvatarButton = document.querySelector(".profile__avatar-edit")
+export const formValidationConfig = {
+  formSelector: '.popup__input',
+  inputSelector: '.popup__input-text',
+  inputErrorClass: 'popup__input-text-error',
+  errorClass: 'popup__input-text-error_active',
+  submitButtonSelector: '.popup__btn',
+};
+  export const validationConfig = {
+    formSelector: '.popup__input',
+    inputSelector: '.popup__input-text',
+    submitButtonSelector: '.popup__btn',
+    inactiveButtonClass: 'popup__btn_disabled',
+    inputErrorClass: 'popup__input-text-error',
+    errorClass: 'popup__input-text-error_active'
+  }   
+*/
+
 
   const buttonAbout = document.querySelector('.profile__edit');
   const buttonAdd = document.querySelector('.profile__add');
+  const popupEditProfile = document.querySelector(".popup-profile");
+  const editAvatarButton = document.querySelector(".profile__avatar-edit")
  
   const cardsContainer = document.querySelector('.attractions')
   
   const nameEdit = document.getElementById('nameform');
   const profEdit = document.getElementById('professionform');
-  const editForm = document.querySelector('.popup__input');
+  const editForm = document.getElementById('popupform');
+  const editAvatarPhoto = document.getElementById('avatarform');
   
   
   const titleForm = document.getElementById('popuptitle');
@@ -58,6 +66,9 @@ export const initialCards = [
     titleForm,
     urlForm,
     formAddCardPopup,
+    popupEditProfile,
+    editAvatarPhoto,
+    editAvatarButton
   };
 
 

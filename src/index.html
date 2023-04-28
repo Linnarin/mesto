@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
   </head>
   <body class="page">
@@ -14,7 +13,8 @@
     <main>
       <section class="profile">
         <div class="profile__data">
-          <img class="profile__avatar" src="<%=require('./images/Kusto.jpg')%>" alt="Фото анкеты">
+          <img class="profile__avatar" src="#" alt="Фото анкеты">
+          <button class="profile__avatar-edit" aria-label="Редактирование аватара профиля" type="button"></button>
           <div class="profile__change">
           <div class="profile__info"> 
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -78,7 +78,10 @@
         <img class="place__img" src="<%=require('./images/karachayevsk.jpg')%>" alt="Фото храма">
         <div class="place__caption">
           <h2 class="place__title">Карачаевск</h2>
-          <button class="place__like" type="button"></button>
+          <div class="place__like-container">
+            <button aria-label="Кнопка понравилось" type="button" class="place__like"></button>
+            <p class="place__like-count">0</p>
+          </div>
         </div> 
         <button class="place__delete" type="button"></button> 
       </div>
@@ -92,6 +95,29 @@
         <h2 class="popup__title-photo">Швейцария</h2>
       </div>
     </section>
+    <section class="popup popup-avatar">
+      <div class="popup__container">
+        <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="avatarform" method="post" class="popup__input" action="/" novalidate>
+          <label class="popup__form-label">
+            <input type="url" class="popup__input-text popup__input-text_link" name="avatar" id="avatar-input"
+              placeholder="Ссылка на картинку" required>
+            <span class="popup__input-text-error">Введите адрес сайта.</span>
+          </label>
+          <button type="submit" class="popup__btn popup__btn_type_save" disabled>Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <div class="popup popup-delete">
+      <div class="popup__container">
+        <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <div class="popup__form ">
+          <button type="submit" class="popup__btn popup__btn_type_delete">Да</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
   
