@@ -1,31 +1,33 @@
+import Popup from "./Popup.js";
+
 export default class PopupDelete extends Popup {
-  constructor (popupSelector, handlerFormSubmit) {//ждем обработчиик извне
-    super(popupSelector);//родителя
-    this._form = this._popup.querySelector('.popup__input');//форма попапа
-    this._button = this._form.querySelector('.popup__btn_type_delete');//кнопка сохранить
-    this._handlerFormSubmit = handlerFormSubmit;
+  constructor(popupSelector, submitCallback) {
+    super(popupSelector);
+    this._submitCallback = submitCallback;
+    this._deleteButton = this._popup.querySelector(
+      ".popup__btn_type_delete"
+    );
+    this._deleteButtonText = this._deleteButton.textContent;
   }
 
-  //открываем попап
   open(cardId, card) {
     super.open();
-    this._cardId = cardId;
-    this._card = card;
+    this.cardId = cardId;
+    this.card = card;
+    this._deleteButton.addEventListener("click", this._submitCallback);
   }
 
-  //неактивная кнопка
-  disableButton(text, disable = true) {
-    this._button.disable = disable;
-    this._button.textContent = text;
+  renderLoading(isLoading, text) {
+    if (isLoading) {
+      this._deleteButton.textContent = text;
+    } else {
+      this._deleteButton.textContent = this._deleteButtonText;
+    }
   }
 
-  //слушатели
-  setEventListeners () {
-    super.setEventListeners ();//родителя
-    //слушатель события формы
-    this._form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this._handlerFormSubmit(this._cardId, this._card);//+
-    });
-}
+  close() {
+    super.close();
+    this._deleteButton.removeEventListener("click", this._submitCallback);
+  }
+
 }

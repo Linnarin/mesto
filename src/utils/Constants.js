@@ -33,15 +33,17 @@ export const formValidationConfig = {
   const buttonAbout = document.querySelector('.profile__edit');
   const buttonAdd = document.querySelector('.profile__add');
   const popupEditProfile = document.querySelector(".popup-profile");
-  const editAvatarButton = document.querySelector(".profile__avatar-edit")
- 
+  const editAvatarButton = document.querySelector(".profile__avatar")
+
   const cardsContainer = document.querySelector('.attractions')
   
   const nameEdit = document.getElementById('nameform');
   const profEdit = document.getElementById('professionform');
   const editForm = document.getElementById('popupform');
   const editAvatarPhoto = document.getElementById('avatarform');
-  
+  const popupFormEditElement = document.forms["popupform"];
+  const popupAddFormLinkElement = document.forms["popupformplace"];
+  const popupAvatarElement = document.forms["avatarform"];
   
   const titleForm = document.getElementById('popuptitle');
   const urlForm = document.getElementById('popupurl');
@@ -68,7 +70,10 @@ export const formValidationConfig = {
     formAddCardPopup,
     popupEditProfile,
     editAvatarPhoto,
-    editAvatarButton
+    editAvatarButton,
+    popupFormEditElement,
+    popupAddFormLinkElement,
+    popupAvatarElement
   };
 
 

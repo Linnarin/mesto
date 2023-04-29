@@ -20,7 +20,7 @@ export default class UserInfo {
   }
 
   getUserId () {
-    return this._userId;
+    return this.userId;
   }
 
   setUserAvatar ({avatar}) {
