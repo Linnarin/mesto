@@ -13,30 +13,9 @@ popupAddFormLinkElement,
 popupAvatarElement
 
 } from "../utils/constants.js";  
-/*
-  buttonAbout,
-  buttonAdd,
-  ,
-  editAvatarButton,
-  
-
-  editForm,
-  formAddCardPopup,
-  ,
-  
-
-
-*/
-
-
 
 import { FormValidator } from "../components/FormValidator.js";
 import { validationConfig } from "../utils/constants.js";
-
-
-
-
-
 import  { Api }  from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
 import  Section  from "../components/Section.js";
@@ -156,6 +135,7 @@ Promise.all([api.getUserInfo(), api.getArrCards()])
 
 //удаление
 const handlePlaceSubmitDelete = () => {
+  debugger;
   popupDelete.renderLoading(true, "Удаление...");
   api.deleteCard(popupDelete.cardId)
     .then(() => {
@@ -169,17 +149,10 @@ const handlePlaceSubmitDelete = () => {
 };
 
     const popupDelete = new PopupDelete('.popup-delete', handlePlaceSubmitDelete);
-  
-
     const popupFormProfile = new PopupWithForm ('.popup-profile', handlerFormSubmitEdit);
     const popupAddCard = new PopupWithForm('.popup-place', addUserCard);
     const popupZoomImage = new PopupWithImage('.popup-img');
     const popupAddAvatar = new PopupWithForm('.popup-avatar', addAvatar);
-
-    
-    
-
-
 
      const handlerPopupEditProfile = () => {
      const defaultUserData = userProfile.getUserInfo();//данные по умолчанию (ловим из профиля)
@@ -193,6 +166,7 @@ const handlePlaceSubmitDelete = () => {
     popupZoomImage.setEventListeners();
     popupFormProfile.setEventListeners();
     popupAddCard.setEventListeners();
+    popupDelete.setEventListeners();
     buttonAbout.addEventListener('click', handlerPopupEditProfile);
 
     buttonAdd.addEventListener('click', () => {
@@ -201,6 +175,7 @@ const handlePlaceSubmitDelete = () => {
     });
 
     editAvatarButton.addEventListener('click', () => {
+      validatorEditAvatar.disabledButton(validationConfig);
       popupAddAvatar.open();
     });
 

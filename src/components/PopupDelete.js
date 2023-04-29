@@ -24,10 +24,9 @@ export default class PopupDelete extends Popup {
       this._deleteButton.textContent = this._deleteButtonText;
     }
   }
-
   close() {
     super.close();
     this._deleteButton.removeEventListener("click", this._submitCallback);
   }
-
 }
+

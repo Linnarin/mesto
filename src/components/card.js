@@ -168,30 +168,25 @@ class Card {
   updateLikes(res) {
     this._likes = res.likes;
     this._counter.textContent = res.likes.length;
-
     if (this.checkMyLiked()) {
       console.log('true');
     } else {
       console.log('false');
     }
-
     this._toggleLikeButton();
   }
 
   _startPageLikes() {
-    //console.log('this.checkMyLiked() = ' + this.checkMyLiked());
     const check = this.checkMyLiked();
-
     if (check) {
-      //console.log('Лайка ЕСТЬ —> удаляем лайк');
       this._like.classList.add('place__like_active');
     } else {
-      //console.log('Лайка НЕТ  —> ставим лайк');
     }
   }
 
   //кнопка лайка в карточке
   _toggleLikeButton() {
+    console.log(this._like)
     this._like.classList.toggle('place__like_active');
   }
   //удаление карточки из разметки
